@@ -1,17 +1,42 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
-import iView from 'iview'
+import Vue from 'vue'     
+import VueRouter from 'vue-router'
 
-Vue.use(iView)
-Vue.use(Router)
+const Home = () => import('@/views/home/Home')
+const Category = () => import('@/views/category/Category')
+const Cart = () => import('@/views/cart/Cart')
+const Profile = () => import('@/views/profile/Profile')
+const Detail = () => import('@/views/detail/Detail')
+Vue.use(VueRouter)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+const routes = [
+  {
+    path: '/',
+    redirect: '/cart'
+  },
+  {
+    path: '/home',
+    components: Home
+  },
+  {
+    path: '/category',
+    components: Category
+  },
+  {
+    path: '/cart',
+    component: Cart
+  },
+  {
+    path: '/profile',
+    component: Profile
+  },
+  {
+    path: '/detail',
+    component: Detail
+  }
+]
+const router = new VueRouter({
+  mode: 'history',
+  routes
 })
+
+export default router
